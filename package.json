@@ -1,0 +1,22 @@
+{
+  "name": "rolland-github-page",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsaf/rsaf.github.io.git"
+  },
+  "author": "Rolland Safort N.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rsaf/rsaf.github.io/issues"
+  },
+  "homepage": "https://github.com/rsaf/rsaf.github.io#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
