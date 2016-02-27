@@ -2,6 +2,10 @@ tt, code, kbd, samp, pre {
     font-family: Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
 }
 
+code{
+  font-size: 1.2em;
+}
+
 
 .highlight {
     margin-top: 5px;
