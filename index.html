@@ -68,7 +68,8 @@
                   appRoutes: any[];
                 constructor(private dynamicRouteConfigurator: DynamicRouteConfigurator) {
                   this.appRoutes = this.getAppRoutes();
-                    let routes = [ { path: '/', component: Home, name: 'Dashboard' },{ path: '/order', component: Order, name: 'Order' }];
+                    let routes = [ { path: '/', component: Home, name: 'Dashboard' },
+                                { path: '/order', component: Order, name: 'Order' }];
                     var i = -1;
                     while(++i<routes.length){
                        this.dynamicRouteConfigurator.addRoute(this.constructor, routes[i]);
