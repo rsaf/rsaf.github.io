@@ -170,52 +170,46 @@ export class DynamicRouteConfigurator {
             </div>
 
 
+    <h4>
+      Setting up left navigation component
+    </h4>
 
 
-            <div>
-               left navigation component
-            </div>
+    The left navigation takes a single input(navigations) which is an array of the various routes.
 
-            <div>
-              <pre class="highlight">
-                <code class="language-ts" data-lang="ts">
-  import {Component, View,Input} from 'angular2/core';
-  import {RouterLink,ROUTER_DIRECTIVES} from 'angular2/router';
+    <div>
+      <pre class="highlight">
+        <code class="language-ts" data-lang="ts">
+      import {Component, View,Input} from 'angular2/core';
+      import {RouterLink,ROUTER_DIRECTIVES} from 'angular2/router';
 
-  @Component({
-      selector: 'navigator',
-  })
+      @Component({
+          selector: 'navigator',
+      })
 
 
-  @View({
-  	templateUrl: 'layout/navigator/navigator.html',
-    directives: [RouterLink,ROUTER_DIRECTIVES]
-  })
-  export class Navigator {
-  @Input() navigations: any[];
-      constructor(link:RouterLink) {
+      @View({
+      	templateUrl: 'layout/navigator/navigator.html',
+        directives: [RouterLink,ROUTER_DIRECTIVES]
+      })
+      export class Navigator {
+      @Input() navigations: any[];
+          constructor() {
+          }
       }
-  }
-</code>
+    </code>
 
-              </pre>
+      </pre>
+    </div>
 
-            </div>
-
-
-                        <div>
-                          The naviation array is passed to the left left navigation component as follows
-                        </div>
-
-                        <div>
-                          <pre class="highlight">
-                            <code class="language-ts" data-lang="ts">
-	                               &ltnavigator  [navigations]="appRoutes"&gt &lt/navigator&gt
-                            </code>
-
-                          </pre>
-
-                        </div>
+    The routes in this example are passed to the navigation as an input attribute
+      <div>
+        <pre class="highlight">
+          <code class="language-ts" data-lang="ts">
+  &ltnavigator  [navigations]="appRoutes"&gt &lt/navigator&gt
+          </code>
+        </pre>
+      </div>
 
         </div>
         <div class="col-sm-2"></div>
