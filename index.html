@@ -66,7 +66,12 @@ import {RouteConfig, AsyncRoute} from 'angular2/router';
 
   <h4> Dynamic Route configuration Example</h4>
 
-            <div>admin.ts</div>
+  <div>
+  The admin component uses the DynamicRouteConfigurator service presented in more details further down.
+The service has an addRoute, and getRoutes methods which allows us to add a new route to the,
+  <a href="https://angular.io/docs/ts/latest/guide/router.html" target="_blank">@RouteConfig</a> annotation, and get all existing routes.
+  We can get all the routes and manipulate them before setting the navigation. The getAppRoutes method of the admin.ts component below is doing just that.
+  </div>
             <pre class="highlight">
               <code class="language-ts" data-lang="ts">
 
@@ -114,16 +119,24 @@ private getAppRoutes(): any[] {
 }
 
 }
-              </code>
-            </pre>
-            </div>
+  </code>
+</pre>
 
+</div>
 
-            <div>
-               router service
-            </div>
+<h4>
+The router service
+</h4>
 
-            <div>
+  <div class="">
+
+    The router service, DynamicRouteConfigurator is making use of the  reflect-metadata module to
+    read all annotations and filter out the routeConfigution object. As seen from the getRoutes method below.
+    And the addRoute is adding a new route to the RouteConfig of a given component.
+
+  </div>
+
+<div>
               <pre class="highlight">
                 <code class="language-ts" data-lang="ts">
   /// <reference path="../../../node_modules/reflect-metadata/reflect-metadata.d.ts"/>
@@ -164,10 +177,8 @@ export class DynamicRouteConfigurator {
     Reflect.defineMetadata('annotations', annotations, Admin);
   }
 }  </code>
-
-              </pre>
-
-            </div>
+  </pre>
+</div>
 
 
     <h4>
