@@ -6,6 +6,9 @@ code{
   font-size: 1.2em;
 }
 
+body{
+  min-height: 550px;
+}
 
 .highlight {
   margin-top: 5px;
