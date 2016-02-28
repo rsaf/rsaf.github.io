@@ -29,6 +29,13 @@
         </div>
 
         <div class="col-sm-8">
+          <div class="margin-bottom-20">
+            A few weeks ago i was working on a project where we had to implement an admin portal for a customer.
+            Since didn't how many components what components are going to be loaded, we had come up with a solution that would work for
+            any given component. Therefore, the dynamic component loading and dynamic route configuration were the best options.
+            On this post i'm going to cover the dynamic route configuration, asuming the components are already loaded.I will cover a more complete scenario in a different post,
+            where both the components and the route definitions lazy-loaded.
+          </div>
 
           Dynamic Routing and dynamic route configuration is a common need for all major web applications. Angular2 is still in beta at the time of this writing, but provides
           a way for us to impliment dynamic route configuration, using the <a href="https://angular.io/docs/js/latest/api/router/AsyncRoute-class.html" target="_blank"> AsyncRoute</a>
@@ -51,7 +58,7 @@ import {RouteConfig, AsyncRoute} from 'angular2/router';
             all we need is to provide is a routing path, the component we want to load on that path, and an optional component name.
           <div>
 
-            <div>To make it more flexible and dynamic, routes definition can be saved on a remote database or configuration file, then loaded on-demand to configure the routes on the front end </div>
+            <div>To make it more flexible and dynamic, routes definition can be saved on a remote database or configuration file, then loaded on-demand to configure the routes on the front end. </div>
   <div>
 
   <h4> Dynamic Route configuration Example</h4>
