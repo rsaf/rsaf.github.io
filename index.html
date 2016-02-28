@@ -77,30 +77,6 @@ The service has an addRoute, and getRoutes methods which allows us to add a new 
   </div>
             <pre class="highlight">
               <code class="language-ts" data-lang="ts">
-
-<!-- import {Component,View, provide} from 'angular2/core'
-import {ROUTER_DIRECTIVES, RouteConfig, RouterLink} from 'angular2/router';
-import {Navigator} from './layout/navigator/navigator';
-import {Home} from './components/home/home.component';
-import {Order} from './components/order/order.component';
-import {DynamicRouteConfigurator} from './services/router';
-
-@Component({
-selector:'admin',
-providers: [
-  RouterLink,
-  DynamicRouteConfigurator
-]
-})
-
-@RouteConfig([
-])
-
-@View({
-   templateUrl:'admin.html',
-   directives: [ROUTER_DIRECTIVES, Header, Navigator, CORE_DIRECTIVES]
-}) -->
-
 export class Admin{
   appRoutes: any[];
 constructor(private dynamicRouteConfigurator: DynamicRouteConfigurator) {
@@ -119,8 +95,7 @@ private getAppRoutes(): any[] {
     .getRoutes(this.constructor).configs.map(route => {
       return { link: [`/${route.name}`], title: route.name,icon:'mdi-action-dashboard' };
     });
-}
-
+  }
 }
   </code>
 </pre>
@@ -140,10 +115,8 @@ The router service
   </div>
 
 <div>
-              <pre class="highlight">
-                <code class="language-ts" data-lang="ts">
-  /// <reference path="../../../node_modules/reflect-metadata/reflect-metadata.d.ts"/>
-
+  <pre class="highlight">
+        <code class="language-ts" data-lang="ts">
 import {Injectable, Type,ViewEncapsulation} from 'angular2/core'
 import {RouteRegistry} from 'angular2/router'
 import {Admin} from '../admin'
@@ -230,8 +203,6 @@ export class DynamicRouteConfigurator {
       </div>
 
         </div>
-        <div class="col-sm-2"></div>
-        <div class="clearfix"></div>
     </div>
 
     <div class="vmargin-20">
@@ -239,12 +210,15 @@ export class DynamicRouteConfigurator {
     </div>
 
     </div>
+    <div class="col-sm-2"></div>
+    <div class="clearfix"></div>
 
-
-        <footer class="bluebg text-center">
-          angular2 tips,February 2016
-        </footer>
   </div>
+</div>
+
+<footer class="bluebg text-center">
+        angular2 tips,February 2016
+</footer>
 
 
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
