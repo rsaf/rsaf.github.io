@@ -39,7 +39,6 @@ import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, Router, RouterLink} fr
 import {Navigator} from './layout/navigator/navigator';
 import {Home} from './components/home/home.component';
 import {Order} from './components/order/order.component';
-import {CONFIG} from './admin.config';
 import {DynamicRouteConfigurator} from './services/router';
 
 @Component({
@@ -49,8 +48,6 @@ providers: [
   DynamicRouteConfigurator
 ]
 })
-
-
 
 @RouteConfig([
 ])
