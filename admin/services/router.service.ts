@@ -4,8 +4,6 @@ import {Injectable, Type,ViewEncapsulation} from 'angular2/core'
 import {RouteRegistry} from 'angular2/router'
 import {Admin} from '../admin'
 
-declare var _:any;
-
 @Injectable()
 export class DynamicRouteConfigurator {
   constructor(private registry: RouteRegistry) {}
