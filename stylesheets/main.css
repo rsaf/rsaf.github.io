@@ -13,7 +13,10 @@ body{
 html,body{
   height: 100%;
 }
-
+.page-header{
+  background: url('../images/banner1') no-repeat center center;
+  background-size: 100% 100%;
+}
 footer{
   color: white;
 }
