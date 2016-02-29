@@ -16,6 +16,7 @@ html,body{
 .page-header{
   background: url('../images/banner1') no-repeat center center;
   background-size: 100% 100%;
+  background-color:transparent;
 }
 footer{
   color: white;
