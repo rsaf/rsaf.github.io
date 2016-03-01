@@ -22,12 +22,12 @@ html,body{
 .page-header{
   width: 100%;
   height: 100%;
-  margin: 0;
+  margin: 0 !important;
   color: white;
-  background: -webkit-linear-gradient(left,#3181B1,#153363);  /*For Safari 5.1 to 6.0*/
-  background: -o-linear-gradient(right,#3181B1,#153363);  /*For Opera 11.1 to 12.0*/
-  background: -moz-linear-gradient(right,#3181B1,#153363);  /*For Firefox 3.6 to 15*/
-  background:  linear-gradient(to right,#3181B1,#153363);  /*Standard syntax*/
+  background: -webkit-linear-gradient(top,#3181B1,#153363);  /*For Safari 5.1 to 6.0*/
+  background: -o-linear-gradient(bottom,#3181B1,#153363);  /*For Opera 11.1 to 12.0*/
+  background: -moz-linear-gradient(bottom,#3181B1,#153363);  /*For Firefox 3.6 to 15*/
+  background:  linear-gradient(to bottom,#3181B1,#153363);  /*Standard syntax*/
 }
 footer{
   color: white;
