@@ -24,17 +24,18 @@ html,body{
   height: 100%;
   margin: 0 !important;
   color: white;
-  font-weight: bold;
   background: #153363;  /*for browsers that do not support gradient*/
-  background: -webkit-linear-gradient(#153363,#3181B1 20%,#153363,#3181B1 80%,#153363);  /*For Safari 5.1 to 6.0*/
-  background: -o-linear-gradient(#153363,#3181B1 20%,#153363,#3181B1 80%,#153363);  /*For Opera 11.1 to 12.0*/
-  background: -moz-linear-gradient(#153363,#3181B1 20%,#153363,#3181B1 80%,#153363);  /*For Firefox 3.6 to 15*/
-  background:  linear-gradient(#153363,#3181B1 20%,#153363,#3181B1 80%, #153363);  /*Standard syntax*/
-  font-size: 1.6em;
+  background: -webkit-linear-gradient(#153363,#3181B1 40%,#153363);  /*For Safari 5.1 to 6.0*/
+  background: -o-linear-gradient(#153363,#3181B1 40%,#153363);  /*For Opera 11.1 to 12.0*/
+  background: -moz-linear-gradient(#153363,#3181B1 40%,#153363);  /*For Firefox 3.6 to 15*/
+  background:  linear-gradient(#153363,#3181B1 40%,#153363);  /*Standard syntax*/
+  font-size: 2em;
+  font-weight: bolder;
 }
 footer{
   color: white;
 }
+
 .highlight {
   margin-top: 5px;
   margin-bottom: 15px;
