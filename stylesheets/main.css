@@ -14,7 +14,7 @@ html,body{
   height: 100%;
 }
 .page-header{
-  background: url('https://raw.githubusercontent.com/rsaf/rsaf.github.io/master/images/images.jpg')  center center;
+  background: url('https://raw.githubusercontent.com/rsaf/rsaf.github.io/master/images/images.jpg') repeat  center center;
   background-size: 100% 100%;
   background-color:transparent;
   font-size: 3em;
