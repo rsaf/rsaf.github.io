@@ -13,13 +13,15 @@ body{
 html,body{
   height: 100%;
 }
-/*.page-header{
-  background: url('https://raw.githubusercontent.com/rsaf/rsaf.github.io/master/images/banner3.jpg') no-repeat center center;
+.page-header{
+  background: url('https://raw.githubusercontent.com/rsaf/rsaf.github.io/master/images/banner_bg-3.jpg')  center center;
   background-size: 100% 100%;
   background-color:transparent;
-}*/
+  font-size: 3em;
+}
 
-.page-header{
+
+.page-header2{
   width: 100%;
   height: 100%;
   margin: 0 !important;
