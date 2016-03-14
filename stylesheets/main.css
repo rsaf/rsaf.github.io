@@ -14,6 +14,11 @@ html,body{
   height: 100%;
 }
 .page-header{
+  width: 100%;
+  height: 100%;
+  font-size: 3em;
+  color: white;
+  margin: 0 !important;
   background: url('https://raw.githubusercontent.com/rsaf/rsaf.github.io/master/images/blueBg2.jpg') no-repeat  center center;
   background-size: cover;
 
@@ -31,13 +36,6 @@ html,body{
     background-image:  linear-gradient(#153363,#3181B1 40%,#153363);  /*Standard syntax*/
     opacity: .6;
   }
-  font-size: 3em;
-  font-weight: bolder;
-  width: 100%;
-  height: 100%;
-  color: white;
-  margin: 0 !important;
-
 }
 
 
