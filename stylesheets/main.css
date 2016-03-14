@@ -14,13 +14,12 @@ html,body{
   height: 100%;
 }
 .page-header{
-  background-image: url('https://raw.githubusercontent.com/rsaf/rsaf.github.io/master/images/blueBg2.jpg') repeat  center center;
-  background-size: 100% 100%;
   background-color: #153363;  /*for browsers that do not support gradient*/
-  background-color: -webkit-linear-gradient(#153363,#3181B1 40%,#153363);  /*For Safari 5.1 to 6.0*/
-  background-color: -o-linear-gradient(#153363,#3181B1 40%,#153363);  /*For Opera 11.1 to 12.0*/
-  background-color: -moz-linear-gradient(#153363,#3181B1 40%,#153363);  /*For Firefox 3.6 to 15*/
-  background-color:  linear-gradient(#153363,#3181B1 40%,#153363);  /*Standard syntax*/
+  background: url('https://raw.githubusercontent.com/rsaf/rsaf.github.io/master/images/blueBg2.jpg') center center repeat  -webkit-linear-gradient(#153363,#3181B1 40%,#153363);  /*For Safari 5.1 to 6.0*/
+  background: url('https://raw.githubusercontent.com/rsaf/rsaf.github.io/master/images/blueBg2.jpg') center center repeat  -o-linear-gradient(#153363,#3181B1 40%,#153363);  /*For Opera 11.1 to 12.0*/
+  background: url('https://raw.githubusercontent.com/rsaf/rsaf.github.io/master/images/blueBg2.jpg') center center repeat  -moz-linear-gradient(#153363,#3181B1 40%,#153363);  /*For Firefox 3.6 to 15*/
+  background: url('https://raw.githubusercontent.com/rsaf/rsaf.github.io/master/images/blueBg2.jpg') center center repeat  linear-gradient(#153363,#3181B1 40%,#153363);  /*Standard syntax*/
+  background-size: 100% 100%;
   font-size: 3em;
   font-weight: bolder;
   width: 100%;
