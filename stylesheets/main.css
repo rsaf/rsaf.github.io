@@ -53,6 +53,14 @@ html,body{
   font-size: 2.5em;
   font-weight: bolder;
 }
+
+footer{
+  background: #002b36;  /*for browsers that do not support gradient*/
+  background: -webkit-linear-gradient(#002b36,black );  /*For Safari 5.1 to 6.0*/
+  background: -o-linear-gradient(#002b36,black);  /*For Opera 11.1 to 12.0*/
+  background: -moz-linear-gradient(#002b36,black);  /*For Firefox 3.6 to 15*/
+  background:  linear-gradient(#002b36,black);  /*Standard syntax*/
+}
 .main-container{
     padding-top:20px;
     padding-bottom: 20px;
