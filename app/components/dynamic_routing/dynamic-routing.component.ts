@@ -3,7 +3,7 @@ import {Component, provide} from 'angular2/core';
 
 @Component({
   selector:'dynamic-routing',
-  templateUrl:'app/components/dynamic-routing/dynamic-routing.component.html'
+  templateUrl:'app/components/dynamic_routing/dynamic-routing.component.html'
 })
 
 export class DynamicRouting{

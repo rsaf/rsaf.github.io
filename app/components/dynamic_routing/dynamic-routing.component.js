@@ -25,7 +25,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 DynamicRouting = __decorate([
                     core_1.Component({
                         selector: 'dynamic-routing',
-                        templateUrl: 'app/components/dynamic-routing/dynamic-routing.component.html'
+                        templateUrl: 'app/components/dynamic_routing/dynamic-routing.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], DynamicRouting);

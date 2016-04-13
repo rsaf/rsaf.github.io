@@ -25,7 +25,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 DynamicNavitgation = __decorate([
                     core_1.Component({
                         selector: 'dynamic-navigation',
-                        templateUrl: 'app/components/dynamic-navigation/dynamic-navigation.component.html'
+                        templateUrl: 'app/components/dynamic_navigation/dynamic-navigation.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], DynamicNavitgation);
