@@ -1,0 +1,211 @@
+<body>
+  <section class="page-header">
+    <h1 class="project-name" style="margin-top:24%">Rolland Safort Ntague's  Blog</h1>
+    <h2 class="project-tagline">Dynamic Route Configuration in angular2</h2>
+  </section>
+
+  <div class="container-fluid main-container">
+    <div class="row">
+      <div  class="col s2 margin-bottom-20">
+        <img src="images/profile.jpg" width="120px" height="120px" style="display:block; margin:auto; border-radius:6px;"></img>
+        <div class="text-center" style="margin-top:20px;">Rolland Safort N.</div>
+        <div class="text-center" > <span  class="text-overflow">email:</span> <span  class="text-overflow"> rollandsafort@gmail.com<span></div>
+
+      </div>
+
+      <div class="col s8">
+        <div class="margin-bottom-20">
+          A few weeks ago i was working on a project where we had to implement an admin portal for a customer.
+          Since we didn't how many components and  what components are going to be loaded, we had come up with a solution that would work for
+          any given situation. Therefore, the dynamic component loading and dynamic routes configuration were the best options.
+          I searched the web for any example but didn't find much.
+          <a href="http://blog.mgechev.com/2015/12/30/angular2-router-dynamic-route-config-definition-creation"> MINKO GECHEV'S Post</a> was doing exactly what i needed, but some how didn't work out for me directly.
+          probably because it was written based on an earlier version of Angular2. So i had to make some changes , find more resources and make it more suitable for my case.
+          On this post i'm going to cover the dynamic route configuration only, asuming the components are already loaded.I will cover a more complete scenario in a different post,
+          where both the components and the route definitions lazy-loaded.
+          <br />
+          If you want to dive directly in the code, you can check it on my
+          <a href="https://github.com/rsaf/rsaf.github.io/tree/master/admin" target="_blank">GitHub Page</a>
+        </div>
+
+        Dynamic Routing and dynamic route configuration is a common need for all major web applications. Angular2 is still in beta at the time of this writing, but provides
+        a way for us to implement dynamic route configuration, using the <a href="https://angular.io/docs/js/latest/api/router/AsyncRoute-class.html" target="_blank"> AsyncRoute</a>
+        mechanism. AsyncRoute is used to route a path to an asynchronously loaded component.
+
+
+        <h4> Example usage of the AsyncRoute</h4>
+        <pre class="highlight">
+          <code class="language-ts" data-lang="ts">
+import {RouteConfig, AsyncRoute} from 'angular2/router';
+@RouteConfig([
+    new AsyncRoute({path: '/home', loader: () => Promise.resolve(MyLoadedCmp), name:
+  'MyLoadedCmp'})
+])
+</code>
+</pre>
+
+        <div>
+          As you can see from the code above,
+          all we need is to provide is a routing path, the component we want to load on that path, and an optional component name.
+        <div>
+
+          <div>To make it more flexible and dynamic, routes definition can be saved on a remote database or configuration file, then loaded on-demand to configure the routes on the front end. </div>
+<div>
+
+<h4> Dynamic Route configuration Example</h4>
+
+<div>
+The admin component uses the DynamicRouteConfigurator service presented in more details further down.
+The service has an addRoute, and getRoutes methods which allows us to add a new route to the,
+<a href="https://angular.io/docs/ts/latest/guide/router.html" target="_blank">@RouteConfig</a> annotation, and get all existing routes.
+We can get all the routes and manipulate them before setting the navigation. The getAppRoutes method of the admin.ts component below is doing just that.
+</div>
+          <pre class="highlight">
+            <code class="language-ts" data-lang="ts">
+export class Admin{
+appRoutes: any[];
+constructor(private dynamicRouteConfigurator: DynamicRouteConfigurator) {
+this.appRoutes = this.getAppRoutes();
+  let routes = [ { path: '/', component: Home, name: 'Dashboard' },
+              { path: '/order', component: Order, name: 'Order' }];
+  var i = -1;
+  while(++i < routes.length){
+     this.dynamicRouteConfigurator.addRoute(this.constructor, routes[i]);
+  }
+  this.appRoutes = this.getAppRoutes();
+}
+
+private getAppRoutes(): any[] {
+  return this.dynamicRouteConfigurator
+  .getRoutes(this.constructor).configs.map(route => {
+    return { link: [`/${route.name}`], title: route.name,icon:'mdi-action-dashboard' };
+  });
+}
+}
+</code>
+</pre>
+
+</div>
+
+<h4>
+The router service
+</h4>
+
+<div class="">
+
+  The router service, DynamicRouteConfigurator is making use of the  reflect-metadata module to
+  read all annotations and filter out the routeConfigution object. As seen from the getRoutes method below.
+  And the addRoute is adding a new route to the RouteConfig of a given component.
+
+</div>
+
+<div>
+<pre class="highlight">
+      <code class="language-ts" data-lang="ts">
+import {Injectable, Type,ViewEncapsulation} from 'angular2/core'
+import {RouteRegistry} from 'angular2/router'
+import {Admin} from '../admin'
+
+@Injectable()
+export class DynamicRouteConfigurator {
+constructor(private registry: RouteRegistry) {}
+
+addRoute(component: Type, route) {
+  let routeConfig = this.getRoutes(component);
+  routeConfig.configs.push(route);
+  this._updateRouteConfig(component, routeConfig);
+  this.registry.config(component, route);
+}
+getRoutes(component: Type) {
+    return Reflect.getMetadata('annotations', component)
+        .filter(a => {
+          return a.configs!=undefined;
+        }).pop();
+}
+_updateRouteConfig(component: Type, routeConfig) {
+  let annotations = Reflect.getMetadata('annotations', component);
+  let routeConfigIndex = -1;
+  for (let i = 0; i < annotations.length; i += 1) {
+      if (annotations[i].configs!=undefined) {
+          routeConfigIndex = i;
+          break;
+        }
+  }
+  if (routeConfigIndex < 0) {
+    throw new Error('No route metadata attached to the component');
+  }
+  annotations[routeConfigIndex] = routeConfig;
+  Reflect.defineMetadata('annotations', annotations, Admin);
+}
+}  </code>
+</pre>
+</div>
+
+
+  <h4>
+    Setting up left navigation component
+  </h4>
+
+
+  The left navigation takes a single input(navigations) which is an array of the various routes.
+
+  <div>
+    <pre class="highlight">
+      <code class="language-ts" data-lang="ts">
+    import {Component, View,Input} from 'angular2/core';
+    import {RouterLink,ROUTER_DIRECTIVES} from 'angular2/router';
+
+    @Component({
+        selector: 'navigator',
+    })
+
+
+    @View({
+      templateUrl: 'layout/navigator/navigator.html',
+      directives: [RouterLink,ROUTER_DIRECTIVES]
+    })
+    export class Navigator {
+    @Input() navigations: any[];
+        constructor() {
+        }
+    }
+  </code>
+
+    </pre>
+  </div>
+
+  The routes in this example are passed to the navigation as an input attribute
+    <div>
+      <pre class="highlight">
+        <code class="language-ts" data-lang="ts">
+&ltnavigator  [navigations]="appRoutes"&gt &lt/navigator&gt
+        </code>
+      </pre>
+    </div>
+
+    <div class="">
+      That's it.Enjoy!
+    </div>
+
+      </div>
+  </div>
+
+  <div class="vmargin-20">
+    15 February 2016
+  </div>
+
+  </div>
+  <div class="col s2"></div>
+  <div class="clearfix"></div>
+
+</div>
+</div>
+
+<footer class="bluebg text-center padding-10">
+      angular2 tips, 2016
+</footer>
+
+
+<!-- <script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script> -->
+</body>
