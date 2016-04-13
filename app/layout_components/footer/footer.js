@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../../config'], function(exports_1, context_1) {
+System.register(['angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,25 +10,22 @@ System.register(['angular2/core', '../../config'], function(exports_1, context_1
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, config_1;
+    var core_1;
     var Footer;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (config_1_1) {
-                config_1 = config_1_1;
             }],
         execute: function() {
             Footer = (function () {
                 function Footer() {
-                    // console.log('app footer loaded...')
+                    console.log('app footer loaded...');
                 }
                 Footer = __decorate([
                     core_1.Component({
                         selector: 'footer',
-                        templateUrl: config_1.config.prefix + 'layout_components/header/header.html'
+                        templateUrl: 'app/layout_components/header/header.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], Footer);
