@@ -1,6 +1,12 @@
 * {
   box-sizing: border-box;
 }
+body, html{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 
 body {
   padding: 0;
@@ -89,6 +95,11 @@ a {
 
 
 
+.helper-vscrolling{
+  overflow-y:auto;
+  overflow-x:hidden;
+  webkit-overflow-scrolling:auto;
+}
 
 @media screen and (min-width: 64em) {
   .btn {

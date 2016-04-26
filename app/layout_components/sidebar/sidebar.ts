@@ -5,7 +5,8 @@ declare var jQuery:any;
 
 @Component({
     selector: 'sidebar',
-    templateUrl:'app/layout_components/sidebar/sidebar.html'
+    templateUrl:'app/layout_components/sidebar/sidebar.html',
+    directives: [RouterLink]
 })
 
 export class Sidebar {

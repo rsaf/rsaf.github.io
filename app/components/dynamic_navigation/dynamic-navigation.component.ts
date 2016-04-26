@@ -1,5 +1,7 @@
 
 import {Component, provide} from 'angular2/core';
+import {ROUTER_DIRECTIVES, RouterLink} from 'angular2/router';
+
 
 @Component({
   selector:'dynamic-navigation',

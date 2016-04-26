@@ -1,1 +1,219 @@
-<h1>DynamicNavigation</h1>
+
+<div class="container-fluid main-container helper-vscrolling" style="height:90vh;">
+      <div class="margin-bottom-20">
+        Let's continue our journey of making a dynamic left navigation.This can be used for applications where you have a left navigation with different navigation items
+        depending on the logged in user. Imagine you have a single shop admin platform for two clients A and B. And client A has two items on his navigation, say: orders and products,
+        while client B has 4 items on his navigation: Orders, Users, Shops, Shipment. One way to implement such a navigation would be to load all items on the navigation regardless on the current user (A or B),
+        then hide  items  that are not used by the current user. But method is every inefficient and may slow your application boot process. Also, if you have a hundred users, hide and show become very difficult to manage.
+        Therefore, we can consider loading only the modules and resources needed for a spefic user. And that is achievable thanks to angular's  <a href="https://angular.io/docs/js/latest/api/router/AsyncRoute-class.html" target="_blank"> AsyncRoute</a>  and System.import.
+
+        This post is the next and final step from my  previous post on   <a [routerLink] = "['/DynamicRouting']" >Dynamic Routing in angular2</a>,
+        where i presented a way to dynamically configure your routes. But that was based on the assumption that you had already loaded all the modules
+        needed to configure your navigation.So we had something this, where Component1 and Component2 were already loaded.
+
+        <div>
+          <pre class="highlight">
+            <code class="language-ts" data-lang="ts">
+
+      let routes =  [ { path: '/', component: Component1, name: 'Component1Name' },
+                      { path: '/component2', Component2: Order, name: 'Component2Name' }];
+
+        for (let i = 0; i <  routes.length; i++) {
+            dynamicRoute.addRoute(routes[i]);
+        }
+
+        </code>
+          </pre>
+        </div>
+
+        But now want to make everything dynamic, and load the components on-demand. The above sample code should then look like:
+
+        <div>
+          <pre class="highlight">
+            <code class="language-ts" data-lang="ts">
+
+      let routes =  [ { path: '/', component: 'Component1', name: 'ComponentName' },
+                      { path: '/component2', 'Component2': Order, name: 'ComponentName' }];
+
+        for (let i = 0; i <  routes.length; i++) {
+            dynamicRoute.addRoute(routes[i]);
+        }
+
+        </code>
+          </pre>
+        </div>
+
+        Notice that the components are just strings, that would be loaded later.
+
+        <br />
+      </div>
+
+
+<h4>
+  Our Admin ts file
+</h4>
+
+
+<div>
+  <pre class="highlight">
+    <code class="language-ts" data-lang="ts">
+import {Component,View,Inject, Injectable, provide} from 'angular2/core'
+import {CORE_DIRECTIVES} from 'angular2/common';
+import {HTTP_PROVIDERS } from 'angular2/http';
+import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig,Location, LocationStrategy,AsyncRoute, HashLocationStrategy, Route, Router, RouterLink} from 'angular2/router';
+import {Navigator} from '../layout/navigator/navigator';
+import {DynamicRouteConfigurator} from '../services/router';
+
+
+@Component({
+  selector:'admin',
+  providers: [
+    HTTP_PROVIDERS,
+    ROUTER_PROVIDERS,
+    provide(LocationStrategy, { useClass: HashLocationStrategy }),
+    Request,
+    RouterLink,
+    DynamicRouteConfigurator
+  ]
+})
+
+
+
+@RouteConfig([])
+
+@View({
+  templateUrl:'components/admin.html',
+  directives: [ROUTER_DIRECTIVES, Header, Navigator, CORE_DIRECTIVES]
+})
+
+export class Admin{
+    appRoutes: any[];
+    constructor(private dynamicRouteConfigurator: DynamicRouteConfigurator) {
+
+
+      // the routes definication can be saved in the data base and loaded before the app boot.
+      // to keep things simple, let's use the following sample routes definication
+      var routes = [{"url":"/admin/component1.component",   //the url to laoding the component
+                    "path":"/component1",                    // the route path used on the browser to navigate to the component
+                    "name":"Component1Name",
+                    "component":"Component1"
+                  },
+                  {"url":"/admin/component2.component",
+                                "path":"/component2",
+                                "name":"Component2Name",
+                                "component":"Component2"
+                  }];
+
+      //then call the route service to build the routes for us.
+       this.dynamicRouteConfigurator.dynamicLoader(routes, this);
+    }
+}
+
+</code>
+  </pre>
+</div>
+
+
+
+
+
+
+<h4>
+  The dynamic route module
+</h4>
+
+
+<div>
+  <pre class="highlight">
+    <code class="language-ts" data-lang="ts">
+
+      import {Injectable, Type,ViewEncapsulation} from 'angular2/core'
+      import {RouteRegistry,AsyncRoute} from 'angular2/router'
+      import {Admin} from '../components/admin';
+
+
+      @Injectable()
+      export class DynamicRouteConfigurator {
+        constructor(private registry: RouteRegistry) {
+
+        }
+
+        addRoute(component: Type, route) {
+          let routeConfig = this.getRoutes(component);
+          routeConfig.configs.push(route);
+          this.updateRouteConfig(component, routeConfig);
+          this.registry.config(component, route);
+        }
+
+        getRoutes(component: Type) {
+            return Reflect.getMetadata('annotations', component)
+                .filter(a => {
+                  return a.configs!=undefined;
+                }).pop();
+        }
+        updateRouteConfig(component: Type, routeConfig) {
+          let annotations = Reflect.getMetadata('annotations', component);
+          let routeConfigIndex = -1;
+          for (let i = 0; i < annotations.length; i += 1) {
+              if (annotations[i].configs!=undefined) {
+                  routeConfigIndex = i;
+                  break;
+                }
+          }
+          if (routeConfigIndex < 0) {
+            throw new Error('No route metadata attached to the component');
+          }
+          annotations[routeConfigIndex] = routeConfig;
+          Reflect.defineMetadata('annotations', annotations, Admin);
+        }
+
+        dynamicLoader(routes:any[],target){
+          var _this = this;
+          for (let i = 0; i < routes.length; i++) {
+            if (routes[i].type == 'route') {
+              this.setRoutes(routes[i],target)
+            }else if(routes[i].type == 'none'){
+              this.setRoutes(routes[i], target)
+            }
+
+          }
+        }
+
+         setRoutes(route,target){
+            var _this = this;
+             this.addRoute(target.constructor,
+                         new AsyncRoute({
+                           path: route.path
+                           ,loader:() =>   System.import(route.url).then(function(resp){ target.appRoutes = _this.getAppRoutes(target); return resp[route.component]; })
+                           ,name:route.name
+              }));
+          }
+            getAppRoutes(target): any[] {
+                return this.getRoutes(target.constructor).configs.map(route => {
+                      return { link: [`/${route.name}`], title: route.name,icon:'mdi-action-dashboard' };
+
+                });
+            }
+      }
+
+
+
+</code>
+  </pre>
+</div>
+
+
+  <div class="">
+  Now you can build a highly dynamic web application
+  </div>
+
+
+  <div class="vmargin-20">
+    11 March 2016
+  </div>
+
+
+  <div class="clearfix" style="height:80px;"></div>
+
+
+</div>

@@ -11,5 +11,5 @@ export class DynamicRouting{
     constructor(){
     console.log("DynamicRouting is up and running");
 
-    }
+
  }
