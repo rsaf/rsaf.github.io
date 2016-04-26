@@ -9,6 +9,6 @@ declare var jQuery:any;
 
 export class Navigator {
    constructor() {
-
+      console.log('navigator up and running------->>>>>------')
       }
 }

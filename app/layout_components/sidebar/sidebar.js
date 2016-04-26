@@ -23,6 +23,7 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
         execute: function() {
             Sidebar = (function () {
                 function Sidebar() {
+                    console.log('sidebar up and running------->>>>>------');
                 }
                 Sidebar = __decorate([
                     core_1.Component({

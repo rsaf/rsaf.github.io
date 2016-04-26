@@ -10,10 +10,7 @@ declare var jQuery:any;
 })
 
 export class Header {
-
     constructor() {
-        console.log("header up and running");
-
+        console.log("header up and running------->>>>>------");
     }
-
 }

@@ -7,7 +7,6 @@ import {Component} from 'angular2/core';
 
 export class Footer {
     constructor() {
-
-        console.log('app footer loaded...');
+        console.log('footer up and running------->>>>>------');
     }
 }

@@ -1,4 +1,6 @@
-System.register(['angular2/core', 'angular2/router', '../../admin.config'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,8 +10,8 @@ System.register(['angular2/core', 'angular2/router', '../../admin.config'], func
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, admin_config_1;
-    var Navigator;
+    var core_1, router_1;
+    var DemoNav;
     return {
         setters:[
             function (core_1_1) {
@@ -17,31 +19,26 @@ System.register(['angular2/core', 'angular2/router', '../../admin.config'], func
             },
             function (router_1_1) {
                 router_1 = router_1_1;
-            },
-            function (admin_config_1_1) {
-                admin_config_1 = admin_config_1_1;
             }],
         execute: function() {
-            Navigator = (function () {
-                function Navigator(link) {
+            DemoNav = (function () {
+                function DemoNav(link) {
                 }
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Array)
-                ], Navigator.prototype, "navigations", void 0);
-                Navigator = __decorate([
+                ], DemoNav.prototype, "navigations", void 0);
+                DemoNav = __decorate([
                     core_1.Component({
-                        selector: 'navigator',
-                    }),
-                    core_1.View({
-                        templateUrl: admin_config_1.CONFIG.globalPath + 'layout/navigator/navigator.html',
+                        selector: 'demo-nav',
+                        templateUrl: 'layout/navigator/navigator.html',
                         directives: [router_1.RouterLink, router_1.ROUTER_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [router_1.RouterLink])
-                ], Navigator);
-                return Navigator;
-            })();
-            exports_1("Navigator", Navigator);
+                ], DemoNav);
+                return DemoNav;
+            }());
+            exports_1("DemoNav", DemoNav);
         }
     }
 });

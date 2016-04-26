@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/common'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,32 +10,35 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1, contex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1;
-    var Header;
+    var core_1, router_1;
+    var DemoNavigator;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (common_1_1) {
-                common_1 = common_1_1;
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
-            Header = (function () {
-                function Header() {
-                    console.log("header up and running------->>>>>------");
+            DemoNavigator = (function () {
+                function DemoNavigator(link) {
                 }
-                Header = __decorate([
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Array)
+                ], DemoNavigator.prototype, "navigations", void 0);
+                DemoNavigator = __decorate([
                     core_1.Component({
-                        selector: 'header',
-                        templateUrl: 'app/layout_components/header/header.html',
-                        directives: [common_1.CORE_DIRECTIVES]
+                        selector: 'demo-navigator',
+                        templateUrl: 'layout/navigator/navigator.html',
+                        directives: [router_1.RouterLink, router_1.ROUTER_DIRECTIVES]
                     }), 
-                    __metadata('design:paramtypes', [])
-                ], Header);
-                return Header;
+                    __metadata('design:paramtypes', [router_1.RouterLink])
+                ], DemoNavigator);
+                return DemoNavigator;
             }());
-            exports_1("Header", Header);
+            exports_1("DemoNavigator", DemoNavigator);
         }
     }
 });

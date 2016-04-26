@@ -20,7 +20,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             Footer = (function () {
                 function Footer() {
-                    console.log('app footer loaded...');
+                    console.log('footer up and running------->>>>>------');
                 }
                 Footer = __decorate([
                     core_1.Component({
