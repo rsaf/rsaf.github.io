@@ -1,20 +1,41 @@
 <my-header></my-header>
-<div id="main">
-    <div class="wrapper">
-    	<my-navigator></my-navigator>
-    	<section id="content">
+<div id="main" class="container">
+    <div class="wrapper row">
+
+      <div class="col m2">
+            	<my-navigator></my-navigator>
+      </div>
+
+    	<section id="content" class="col m8">
     	  <div class="container helper-padding-top-15 ">
 
-          <div class="top-nav helper-padding-bottom-15">
-            <a [routerLink]="['DynamicRouting']"  class="waves-effect waves-light btn-large top-nav-item helper-font-bigger" style="display:inline-block; width:180px;  text-align:center; margin-right:30px;">Dynamic Routing in angular2</a>
-            <a [routerLink]="['DynamicNavigation']"  class="waves-effect waves-light btn-large top-nav-item helper-font-bigger"  style="display:inline-block; width:180px; text-align:center;">Dynamic Navigation in angular2</a>
+          <div class="row">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col m3">
+                  <a [routerLink]="['DynamicRouting']"  class="waves-effect waves-light btn-large top-nav-item helper-font-bigger" style="display:inline-block; width:180px;  text-align:center; margin-right:30px;">Dynamic Routing in angular2</a>
+                </li>
+                <li class="tab col m3">
+                    <a [routerLink]="['DynamicNavigation']"  class="waves-effect waves-light btn-large top-nav-item helper-font-bigger"  style="display:inline-block; width:180px; text-align:center;">Dynamic Navigation in angular2</a>
+                </li>
+                <!-- <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li> -->
+              </ul>
+            </div>
+          </div>
+
+
+          <div>
+
           </div>
 
     			<router-outlet>
           </router-outlet>
 			</div>
 		</section>
-  	<my-sidebar></my-sidebar>
+    <div class="col m2">
+        	<my-sidebar></my-sidebar>
+    </div>
+
     </div>
 </div>
 

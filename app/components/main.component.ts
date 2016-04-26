@@ -9,7 +9,6 @@ import {MyNavigator} from '../layout_components/navigator/navigator';
 import {MySidebar} from '../layout_components/sidebar/sidebar';
 import {MyFooter} from '../layout_components/footer/footer';
 
-
 declare var jQuery:any;
 
 @Component({
@@ -30,5 +29,7 @@ declare var jQuery:any;
 export class MainComponent{
   constructor(){
   console.log("MainComponent is up and running");
+
+   jQuery('ul.tabs').tabs();
   }
 }
