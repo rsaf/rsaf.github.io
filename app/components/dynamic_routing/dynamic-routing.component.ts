@@ -7,9 +7,7 @@ import {Component, provide} from 'angular2/core';
 })
 
 export class DynamicRouting{
-
-    constructor(){
-    console.log("DynamicRouting is up and running");
-
-
+  constructor(){
+      console.log("DynamicRouting is up and running");
+   }
  }

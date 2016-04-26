@@ -10,9 +10,7 @@ import {ROUTER_DIRECTIVES, RouterLink} from 'angular2/router';
 })
 
 export class DynamicNavigation{
-
     constructor(){
     console.log("DynamicNavitgation is up and running");
-
     }
  }
