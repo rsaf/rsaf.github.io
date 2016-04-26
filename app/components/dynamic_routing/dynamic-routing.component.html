@@ -31,11 +31,11 @@
       <h4> Example usage of the AsyncRoute</h4>
       <pre class="highlight">
         <code class="language-ts" data-lang="ts">
-<!-- import {RouteConfig, AsyncRoute} from 'angular2/router';
+import {RouteConfig, AsyncRoute} from 'angular2/router';
 @RouteConfig([
   new AsyncRoute({path: '/home', loader: () => Promise.resolve(MyLoadedCmp), name:
 'MyLoadedCmp'})
-]) -->
+])
 </code>
 </pre>
 
@@ -57,7 +57,7 @@ We can get all the routes and manipulate them before setting the navigation. The
 </div>
         <pre class="highlight">
           <code class="language-ts" data-lang="ts">
-<!-- export class Admin{
+export class Admin{
 appRoutes: any[];
 constructor(private dynamicRouteConfigurator: DynamicRouteConfigurator) {
 this.appRoutes = this.getAppRoutes();
@@ -76,7 +76,7 @@ return this.dynamicRouteConfigurator
   return { link: [`/${route.name}`], title: route.name,icon:'mdi-action-dashboard' };
 });
 }
-} -->
+}
 </code>
 </pre>
 
@@ -97,7 +97,7 @@ And the addRoute is adding a new route to the RouteConfig of a given component.
 <div>
 <pre class="highlight">
     <code class="language-ts" data-lang="ts">
-<!-- import {Injectable, Type,ViewEncapsulation} from 'angular2/core'
+import {Injectable, Type,ViewEncapsulation} from 'angular2/core'
 import {RouteRegistry} from 'angular2/router'
 import {Admin} from '../admin'
 
@@ -132,7 +132,7 @@ if (routeConfigIndex < 0) {
 annotations[routeConfigIndex] = routeConfig;
 Reflect.defineMetadata('annotations', annotations, Admin);
 }
-}   -->
+}
 </code>
 </pre>
 </div>
@@ -148,7 +148,7 @@ The left navigation takes a single input(navigations) which is an array of the v
 <div>
   <pre class="highlight">
     <code class="language-ts" data-lang="ts">
-  <!-- import {Component, View,Input} from 'angular2/core';
+  import {Component, View,Input} from 'angular2/core';
   import {RouterLink,ROUTER_DIRECTIVES} from 'angular2/router';
 
   @Component({
@@ -164,7 +164,7 @@ The left navigation takes a single input(navigations) which is an array of the v
   @Input() navigations: any[];
       constructor() {
       }
-  } -->
+  }
 </code>
 
   </pre>
@@ -174,7 +174,7 @@ The routes in this example are passed to the navigation as an input attribute
   <div>
     <pre class="highlight">
       <code class="language-ts" data-lang="ts">
-<!-- &ltnavigator  [navigations]="appRoutes"&gt &lt/navigator&gt -->
+&ltnavigator  [navigations]="appRoutes"&gt &lt/navigator&gt
       </code>
     </pre>
   </div>
