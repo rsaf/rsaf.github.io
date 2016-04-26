@@ -11,27 +11,27 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var Navigator;
+    var MyNavigator;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            Navigator = (function () {
-                function Navigator() {
+            MyNavigator = (function () {
+                function MyNavigator() {
                     console.log('navigator up and running------->>>>>------');
                 }
-                Navigator = __decorate([
+                MyNavigator = __decorate([
                     core_1.Component({
-                        selector: 'navigator',
+                        selector: 'my-navigator',
                         templateUrl: 'app/layout_components/navigator/navigator.html'
                     }), 
                     __metadata('design:paramtypes', [])
-                ], Navigator);
-                return Navigator;
+                ], MyNavigator);
+                return MyNavigator;
             }());
-            exports_1("Navigator", Navigator);
+            exports_1("MyNavigator", MyNavigator);
         }
     }
 });

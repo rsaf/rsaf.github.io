@@ -1,11 +1,11 @@
 import {Component} from 'angular2/core';
 
 @Component({
-    selector: 'footer',
+    selector: 'my-footer',
     templateUrl: 'app/layout_components/header/header.html'
 })
 
-export class Footer {
+export class MyFooter {
     constructor() {
         console.log('footer up and running------->>>>>------');
     }

@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/common', 'angular2/router', './dynamic_routing/dynamic-routing.component', './dynamic_navigation/dynamic-navigation.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/common', 'angular2/router', './dynamic_routing/dynamic-routing.component', './dynamic_navigation/dynamic-navigation.component', '../layout_components/header/header', '../layout_components/navigator/navigator', '../layout_components/sidebar/sidebar', '../layout_components/footer/footer'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', './dynam
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, router_1, dynamic_routing_component_1, dynamic_navigation_component_1;
+    var core_1, common_1, router_1, dynamic_routing_component_1, dynamic_navigation_component_1, header_1, navigator_1, sidebar_1, footer_1;
     var MainComponent;
     return {
         setters:[
@@ -28,6 +28,18 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', './dynam
             },
             function (dynamic_navigation_component_1_1) {
                 dynamic_navigation_component_1 = dynamic_navigation_component_1_1;
+            },
+            function (header_1_1) {
+                header_1 = header_1_1;
+            },
+            function (navigator_1_1) {
+                navigator_1 = navigator_1_1;
+            },
+            function (sidebar_1_1) {
+                sidebar_1 = sidebar_1_1;
+            },
+            function (footer_1_1) {
+                footer_1 = footer_1_1;
             }],
         execute: function() {
             MainComponent = (function () {
@@ -37,8 +49,8 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', './dynam
                 MainComponent = __decorate([
                     core_1.Component({
                         selector: 'main',
-                        template: '<router-outlet></router-outlet>',
-                        directives: [router_1.ROUTER_DIRECTIVES, common_1.CORE_DIRECTIVES, router_1.RouterLink],
+                        template: 'app/components/mai.component.html',
+                        directives: [router_1.ROUTER_DIRECTIVES, header_1.MyHeader, navigator_1.MyNavigator, footer_1.MyFooter, sidebar_1.MySidebar, common_1.CORE_DIRECTIVES, router_1.RouterLink],
                         providers: [
                             router_1.ROUTER_PROVIDERS,
                             core_1.provide(router_1.LocationStrategy, { useClass: router_1.HashLocationStrategy }),

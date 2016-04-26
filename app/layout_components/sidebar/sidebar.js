@@ -11,7 +11,7 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, router_1;
-    var Sidebar;
+    var MySidebar;
     return {
         setters:[
             function (core_1_1) {
@@ -21,21 +21,21 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                 router_1 = router_1_1;
             }],
         execute: function() {
-            Sidebar = (function () {
-                function Sidebar() {
+            MySidebar = (function () {
+                function MySidebar() {
                     console.log('sidebar up and running------->>>>>------');
                 }
-                Sidebar = __decorate([
+                MySidebar = __decorate([
                     core_1.Component({
-                        selector: 'sidebar',
+                        selector: 'my-sidebar',
                         templateUrl: 'app/layout_components/sidebar/sidebar.html',
                         directives: [router_1.RouterLink]
                     }), 
                     __metadata('design:paramtypes', [])
-                ], Sidebar);
-                return Sidebar;
+                ], MySidebar);
+                return MySidebar;
             }());
-            exports_1("Sidebar", Sidebar);
+            exports_1("MySidebar", MySidebar);
         }
     }
 });

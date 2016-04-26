@@ -4,12 +4,12 @@ import {RouterLink,ROUTER_DIRECTIVES} from 'angular2/router';
 declare var jQuery:any;
 
 @Component({
-    selector: 'sidebar',
+    selector: 'my-sidebar',
     templateUrl:'app/layout_components/sidebar/sidebar.html',
     directives: [RouterLink]
 })
 
-export class Sidebar {
+export class MySidebar {
    constructor() {
       console.log('sidebar up and running------->>>>>------')
       }

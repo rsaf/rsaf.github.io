@@ -11,27 +11,27 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var Footer;
+    var MyFooter;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            Footer = (function () {
-                function Footer() {
+            MyFooter = (function () {
+                function MyFooter() {
                     console.log('footer up and running------->>>>>------');
                 }
-                Footer = __decorate([
+                MyFooter = __decorate([
                     core_1.Component({
-                        selector: 'footer',
+                        selector: 'my-footer',
                         templateUrl: 'app/layout_components/header/header.html'
                     }), 
                     __metadata('design:paramtypes', [])
-                ], Footer);
-                return Footer;
+                ], MyFooter);
+                return MyFooter;
             }());
-            exports_1("Footer", Footer);
+            exports_1("MyFooter", MyFooter);
         }
     }
 });

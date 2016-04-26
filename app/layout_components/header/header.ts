@@ -4,12 +4,12 @@ import {CORE_DIRECTIVES} from 'angular2/common';
 declare var jQuery:any;
 
 @Component({
-    selector: 'header',
+    selector: 'my-header',
     templateUrl: 'app/layout_components/header/header.html',
     directives:[CORE_DIRECTIVES]
 })
 
-export class Header {
+export class MyHeader {
     constructor() {
         console.log("header up and running------->>>>>------");
     }

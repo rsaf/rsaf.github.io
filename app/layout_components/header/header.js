@@ -11,7 +11,7 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1, contex
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, common_1;
-    var Header;
+    var MyHeader;
     return {
         setters:[
             function (core_1_1) {
@@ -21,21 +21,21 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1, contex
                 common_1 = common_1_1;
             }],
         execute: function() {
-            Header = (function () {
-                function Header() {
+            MyHeader = (function () {
+                function MyHeader() {
                     console.log("header up and running------->>>>>------");
                 }
-                Header = __decorate([
+                MyHeader = __decorate([
                     core_1.Component({
-                        selector: 'header',
+                        selector: 'my-header',
                         templateUrl: 'app/layout_components/header/header.html',
                         directives: [common_1.CORE_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [])
-                ], Header);
-                return Header;
+                ], MyHeader);
+                return MyHeader;
             }());
-            exports_1("Header", Header);
+            exports_1("MyHeader", MyHeader);
         }
     }
 });
