@@ -11,27 +11,26 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var DynamicNavigation;
+    var Sidebar;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            DynamicNavigation = (function () {
-                function DynamicNavigation() {
-                    console.log("DynamicNavitgation is up and running");
+            Sidebar = (function () {
+                function Sidebar() {
                 }
-                DynamicNavigation = __decorate([
+                Sidebar = __decorate([
                     core_1.Component({
-                        selector: 'dynamic-navigation',
-                        templateUrl: 'app/components/dynamic_navigation/dynamic-navigation.component.html'
+                        selector: 'sidebar',
+                        templateUrl: 'app/layout_components/sidebar/sidebar.html'
                     }), 
                     __metadata('design:paramtypes', [])
-                ], DynamicNavigation);
-                return DynamicNavigation;
+                ], Sidebar);
+                return Sidebar;
             }());
-            exports_1("DynamicNavigation", DynamicNavigation);
+            exports_1("Sidebar", Sidebar);
         }
     }
 });

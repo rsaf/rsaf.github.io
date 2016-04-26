@@ -31,6 +31,7 @@
     "app/layout_components/footer/footer.ts",
     "app/layout_components/header/header.ts",
     "app/layout_components/navigator/navigator.ts",
+    "app/layout_components/sidebar/sidebar.ts",
     "typings/browser.d.ts",
     "typings/browser/ambient/es6-shim/index.d.ts",
     "typings/browser/ambient/jasmine/index.d.ts"

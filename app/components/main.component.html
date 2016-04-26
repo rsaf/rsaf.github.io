@@ -1,14 +1,21 @@
-<!-- <header></header> -->
+<header></header>
 <div id="main">
     <div class="wrapper">
-    	<!-- <navigator></navigator> -->
+    	<navigator></navigator>
     	<section id="content">
     	  <div class="container helper-padding-top-15 ">
+
+          <div class="top-nav helper-padding-bottom-15">
+            <a [routerLink]="['DynamicRouting']"  class="waves-effect waves-light btn-large top-nav-item helper-font-bigger" style="display:inline-block; width:180px;  text-align:center; margin-right:30px;">Dynamic Routing</a>
+            <a [routerLink]="['DynamicNavigation']"  class="waves-effect waves-light btn-large top-nav-item helper-font-bigger"  style="display:inline-block; width:180px; text-align:center;">Dynamic Navigation</a>
+          </div>
+
     			<router-outlet>
           </router-outlet>
 			</div>
 		</section>
+  	<sidebar></sidebar>
     </div>
 </div>
 
-<!-- <footer class="page-footer"></footer> -->
+<footer class="page-footer"></footer>
