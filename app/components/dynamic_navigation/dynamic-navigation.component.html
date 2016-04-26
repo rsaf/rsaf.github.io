@@ -3,7 +3,7 @@
       <div class="margin-bottom-20">
         Let's continue our journey of making a dynamic left navigation.This can be used for applications where you have a left navigation with different navigation items
         depending on the logged in user. Imagine you have a single shop admin platform for two clients A and B. And client A has two items on his navigation, say: orders and products,
-        while client B has 4 items on his navigation: Orders, Users, Shops, Shipment. One way to implement such a navigation would be to load all items on the navigation regardless on the current user (A or B),
+        while client B has 4 items on his navigation: Orders, Users, Shops, Shipment. One way to implement such a navigation would be to load all items on the navigation regardless of the current user (A or B),
         then hide  items  that are not used by the current user. But method is every inefficient and may slow your application boot process. Also, if you have a hundred users, hide and show become very difficult to manage.
         Therefore, we can consider loading only the modules and resources needed for a spefic user. And that is achievable thanks to angular's  <a href="https://angular.io/docs/js/latest/api/router/AsyncRoute-class.html" target="_blank"> AsyncRoute</a>  and System.import.
 
