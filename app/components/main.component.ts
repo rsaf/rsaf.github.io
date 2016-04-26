@@ -15,15 +15,11 @@ declare var jQuery:any;
 @Component({
   selector:'main',
   template: '<router-outlet></router-outlet>',
-  directives: [ROUTER_DIRECTIVES,
-  Header,
-   Navigator,
-   Footer,
-   CORE_DIRECTIVES, RouterLink],
   providers: [
     ROUTER_PROVIDERS,
     provide(LocationStrategy, { useClass: HashLocationStrategy }),
-  ]
+  ],
+  directives: [ROUTER_DIRECTIVES,Header,Navigator,Footer,CORE_DIRECTIVES, RouterLink]
 })
 
 @RouteConfig([

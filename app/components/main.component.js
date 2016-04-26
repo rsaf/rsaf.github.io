@@ -47,15 +47,11 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', './dynam
                     core_1.Component({
                         selector: 'main',
                         template: '<router-outlet></router-outlet>',
-                        directives: [router_1.ROUTER_DIRECTIVES,
-                            header_1.Header,
-                            navigator_1.Navigator,
-                            footer_1.Footer,
-                            common_1.CORE_DIRECTIVES, router_1.RouterLink],
                         providers: [
                             router_1.ROUTER_PROVIDERS,
                             core_1.provide(router_1.LocationStrategy, { useClass: router_1.HashLocationStrategy }),
-                        ]
+                        ],
+                        directives: [router_1.ROUTER_DIRECTIVES, header_1.Header, navigator_1.Navigator, footer_1.Footer, common_1.CORE_DIRECTIVES, router_1.RouterLink]
                     }),
                     router_1.RouteConfig([
                         { path: '/', component: dynamic_routing_component_1.DynamicRouting, name: 'DynamicRouting' },
