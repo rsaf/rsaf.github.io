@@ -23,7 +23,6 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1, contex
         execute: function() {
             MyHeader = (function () {
                 function MyHeader() {
-                    console.log("header up and running------->>>>>------");
                 }
                 MyHeader = __decorate([
                     core_1.Component({

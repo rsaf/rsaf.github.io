@@ -7,8 +7,4 @@ declare var jQuery:any;
     templateUrl:'app/layout_components/navigator/navigator.html'
 })
 
-export class MyNavigator {
-   constructor() {
-      console.log('navigator up and running------->>>>>------')
-      }
-}
+export class MyNavigator {}

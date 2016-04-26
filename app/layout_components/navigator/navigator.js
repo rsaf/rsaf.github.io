@@ -20,7 +20,6 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             MyNavigator = (function () {
                 function MyNavigator() {
-                    console.log('navigator up and running------->>>>>------');
                 }
                 MyNavigator = __decorate([
                     core_1.Component({

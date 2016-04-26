@@ -10,7 +10,4 @@ declare var jQuery:any;
 })
 
 export class MyHeader {
-    constructor() {
-        console.log("header up and running------->>>>>------");
-    }
 }

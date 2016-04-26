@@ -10,7 +10,4 @@ declare var jQuery:any;
 })
 
 export class MySidebar {
-   constructor() {
-      console.log('sidebar up and running------->>>>>------')
-      }
 }
