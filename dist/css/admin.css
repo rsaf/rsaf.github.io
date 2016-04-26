@@ -42,10 +42,6 @@
 body {
   background-color: #fcfcfc;
 }
-#main,
-footer {
-  padding-left: 240px;
-}
 
 #input-select .input-field label {
   position: absolute;
