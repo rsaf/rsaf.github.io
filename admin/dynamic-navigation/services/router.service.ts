@@ -27,7 +27,7 @@
       updateRouteConfig(component: Type, routeConfig) {
         let annotations = Reflect.getMetadata('annotations', component);
         let routeConfigIndex = -1;
-        for (let i = 0; i < annotations.length; i += 1) {
+        for (let i = 0; i < annotations.length; i += 1) {  //find the route configs anotation among the other components
             if (annotations[i].configs!=undefined) {
                 routeConfigIndex = i;
                 break;
@@ -41,14 +41,8 @@
       }
 
       dynamicLoader(routes:any[],target){
-        var _this = this;
         for (let i = 0; i < routes.length; i++) {
-          if (routes[i].type == 'route') {
-            this.setRoutes(routes[i],target)
-          }else if(routes[i].type == 'none'){
-            this.setRoutes(routes[i], target)
-          }
-
+            this.setRoutes(routes[i],target);
         }
       }
 

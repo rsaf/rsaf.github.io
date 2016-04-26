@@ -120,10 +120,12 @@ var routes = [{"url":"/admin/component1.component",   //the url to laoding the c
 
 
 <h4>
-  The dynamic route module
+  The dynamic route service
 </h4>
 
-
+the dynamic router service is straight forward.
+it has a few method but the most important one is the dynamicLoader which can be called by a specific component to loading its routes,
+as seen on the admin component above.
 <div>
   <pre class="highlight">
     <code class="language-ts" data-lang="ts">
@@ -155,7 +157,7 @@ var routes = [{"url":"/admin/component1.component",   //the url to laoding the c
         updateRouteConfig(component: Type, routeConfig) {
           let annotations = Reflect.getMetadata('annotations', component);
           let routeConfigIndex = -1;
-          for (let i = 0; i < annotations.length; i += 1) {
+          for (let i = 0; i < annotations.length; i += 1) {   //find the route configs anotation among the other components
               if (annotations[i].configs!=undefined) {
                   routeConfigIndex = i;
                   break;
@@ -169,14 +171,8 @@ var routes = [{"url":"/admin/component1.component",   //the url to laoding the c
         }
 
         dynamicLoader(routes:any[],target){
-          var _this = this;
           for (let i = 0; i < routes.length; i++) {
-            if (routes[i].type == 'route') {
-              this.setRoutes(routes[i],target)
-            }else if(routes[i].type == 'none'){
-              this.setRoutes(routes[i], target)
-            }
-
+              this.setRoutes(routes[i],target);
           }
         }
 
@@ -189,12 +185,13 @@ var routes = [{"url":"/admin/component1.component",   //the url to laoding the c
                            ,name:route.name
               }));
           }
-            getAppRoutes(target): any[] {
-                return this.getRoutes(target.constructor).configs.map(route => {
-                      return { link: [`/${route.name}`], title: route.name,icon:'mdi-action-dashboard' };
 
-                });
-            }
+          getAppRoutes(target): any[] {
+              return this.getRoutes(target.constructor).configs.map(route => {
+                    return { link: [`/${route.name}`], title: route.name,icon:'mdi-action-dashboard' };
+
+              });
+          }
       }
 
 
