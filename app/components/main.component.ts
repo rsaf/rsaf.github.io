@@ -1,5 +1,5 @@
 
-import {Component ,Inject, Injectable, provide} from 'angular2/core'
+import {Component , provide} from 'angular2/core'
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig,Location, LocationStrategy,AsyncRoute, HashLocationStrategy, Route, Router, RouterLink} from 'angular2/router';
 import {DynamicRouting} from './dynamic_routing/dynamic-routing.component';
@@ -15,7 +15,7 @@ declare var jQuery:any;
 @Component({
   selector:'main',
   template: '<router-outlet></router-outlet>',
-  directives: [ROUTER_DIRECTIVES,Header,Navigator,Footer,Sidebar,CORE_DIRECTIVES, RouterLink],
+  directives: [ROUTER_DIRECTIVES,CORE_DIRECTIVES, RouterLink],
   providers: [
     ROUTER_PROVIDERS,
     provide(LocationStrategy, { useClass: HashLocationStrategy }),
