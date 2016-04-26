@@ -14,7 +14,7 @@ declare var jQuery:any;
 
 @Component({
   selector:'main',
-  template: 'app/components/main.component.html',
+  templateUrl: 'app/components/main.component.html',
   directives: [ROUTER_DIRECTIVES,MyHeader, MyNavigator,MyFooter,MySidebar,CORE_DIRECTIVES, RouterLink],
   providers: [
     ROUTER_PROVIDERS,
