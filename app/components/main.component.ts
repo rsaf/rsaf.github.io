@@ -31,4 +31,4 @@ export class MainComponent{
   constructor(){
   console.log("MainComponent is up and running");
   }
- }
+}
