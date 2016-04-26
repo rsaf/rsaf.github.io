@@ -24,12 +24,8 @@
     "rewriteTsconfig": true
   },
   "files": [
-    "admin/dynamic-navigation/admin.component.ts",
     "admin/dynamic-navigation/admin.ts",
     "admin/dynamic-navigation/boot.ts",
-    "admin/dynamic-navigation/components/home/home.component.ts",
-    "admin/dynamic-navigation/components/order/order.component.ts",
-    "admin/dynamic-navigation/components/product/product.component.ts",
     "admin/dynamic-navigation/layout/navigator/navigator.ts",
     "admin/dynamic-navigation/services/router.service.ts",
     "admin/dynamic-routing/admin.component.ts",
