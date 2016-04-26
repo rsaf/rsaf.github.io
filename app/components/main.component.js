@@ -49,7 +49,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', './dynam
                 MainComponent = __decorate([
                     core_1.Component({
                         selector: 'main',
-                        template: 'app/components/mai.component.html',
+                        template: 'app/components/main.component.html',
                         directives: [router_1.ROUTER_DIRECTIVES, header_1.MyHeader, navigator_1.MyNavigator, footer_1.MyFooter, sidebar_1.MySidebar, common_1.CORE_DIRECTIVES, router_1.RouterLink],
                         providers: [
                             router_1.ROUTER_PROVIDERS,
