@@ -7,11 +7,15 @@
         then hide  items  that are not used by the current user. But method is every inefficient and may slow your application boot process. Also, if you have a hundred users, hide and show become very difficult to manage.
         Therefore, we can consider loading only the modules and resources needed for a spefic user. And that is achievable thanks to angular's  <a href="https://angular.io/docs/js/latest/api/router/AsyncRoute-class.html" target="_blank"> AsyncRoute</a>  and System.import.
 
-          <br>
+        <br />
+        <br />
         This post is the next and final step from my  previous post on   <a [routerLink] = "['/DynamicRouting']" >Dynamic Routing in angular2</a>,
         where i presented a way to dynamically configure your routes. But that was based on the assumption that you had already loaded all the modules
         needed to configure your navigation.So we had something this, where Component1 and Component2 were already loaded.
-        <br>
+
+        <br />
+        <br />
+        
         The code used on the post can be found on my
         <a href="https://github.com/rsaf/rsaf.github.io/tree/master/admin/dynamic-navigation" target="_blank">GitHub Page</a>
 
