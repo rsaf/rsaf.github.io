@@ -45,7 +45,6 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', './dynam
             MainComponent = (function () {
                 function MainComponent() {
                     console.log("MainComponent is up and running");
-                    jQuery('ul.tabs').tabs();
                 }
                 MainComponent = __decorate([
                     core_1.Component({
