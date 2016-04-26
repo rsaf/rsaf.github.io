@@ -6,8 +6,7 @@ declare var jQuery:any;
 @Component({
     selector: 'header',
     templateUrl: 'app/layout_components/header/header.html',
-    directives:[CORE_DIRECTIVES],
-    styleUrls:['app/layout_components/header/resources/css/style.css']
+    directives:[CORE_DIRECTIVES]
 })
 
 export class Header {

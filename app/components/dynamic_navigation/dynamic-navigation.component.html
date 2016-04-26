@@ -11,18 +11,19 @@
         This post is the next and final step from my  previous post on   <a [routerLink] = "['/DynamicRouting']" >Dynamic Routing in angular2</a>,
         where i presented a way to dynamically configure your routes. But that was based on the assumption that you had already loaded all the modules
         needed to configure your navigation.So we had something this, where Component1 and Component2 were already loaded.
+        <br>
+        The code used on the post can be found on my
+        <a href="https://github.com/rsaf/rsaf.github.io/tree/master/dynamic-routing/admin" target="_blank">GitHub Page</a>
 
         <div>
           <pre class="highlight">
             <code class="language-ts" data-lang="ts">
+  let routes =  [ { path: '/', component: Component1, name: 'Component1Name' },
+                { path: '/component2', Component2: Order, name: 'Component2Name' }];
 
-      let routes =  [ { path: '/', component: Component1, name: 'Component1Name' },
-                      { path: '/component2', Component2: Order, name: 'Component2Name' }];
-
-        for (let i = 0; i <  routes.length; i++) {
-            dynamicRoute.addRoute(routes[i]);
-        }
-
+  for (let i = 0; i <  routes.length; i++) {
+      dynamicRoute.addRoute(routes[i]);
+  }
         </code>
           </pre>
         </div>
@@ -32,14 +33,12 @@
         <div>
           <pre class="highlight">
             <code class="language-ts" data-lang="ts">
+  let routes =  [ { path: '/', component: 'Component1', name: 'ComponentName' },
+                { path: '/component2', 'Component2': Order, name: 'ComponentName' }];
 
-      let routes =  [ { path: '/', component: 'Component1', name: 'ComponentName' },
-                      { path: '/component2', 'Component2': Order, name: 'ComponentName' }];
-
-        for (let i = 0; i <  routes.length; i++) {
-            dynamicRoute.addRoute(routes[i]);
-        }
-
+  for (let i = 0; i <  routes.length; i++) {
+      dynamicRoute.addRoute(routes[i]);
+  }
         </code>
           </pre>
         </div>
@@ -51,7 +50,7 @@
 
 
 <h4>
-  Our Admin ts file
+  The Admin  component
 </h4>
 
 
@@ -60,7 +59,6 @@
     <code class="language-ts" data-lang="ts">
 import {Component,View,Inject, Injectable, provide} from 'angular2/core'
 import {CORE_DIRECTIVES} from 'angular2/common';
-import {HTTP_PROVIDERS } from 'angular2/http';
 import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig,Location, LocationStrategy,AsyncRoute, HashLocationStrategy, Route, Router, RouterLink} from 'angular2/router';
 import {Navigator} from '../layout/navigator/navigator';
 import {DynamicRouteConfigurator} from '../services/router';
@@ -69,10 +67,8 @@ import {DynamicRouteConfigurator} from '../services/router';
 @Component({
   selector:'admin',
   providers: [
-    HTTP_PROVIDERS,
     ROUTER_PROVIDERS,
     provide(LocationStrategy, { useClass: HashLocationStrategy }),
-    Request,
     RouterLink,
     DynamicRouteConfigurator
   ]
@@ -84,28 +80,15 @@ import {DynamicRouteConfigurator} from '../services/router';
 
 @View({
   templateUrl:'components/admin.html',
-  directives: [ROUTER_DIRECTIVES, Header, Navigator, CORE_DIRECTIVES]
+  directives: [ROUTER_DIRECTIVES, Navigator, CORE_DIRECTIVES]
 })
 
 export class Admin{
     appRoutes: any[];
     constructor(private dynamicRouteConfigurator: DynamicRouteConfigurator) {
 
-
-      // the routes definication can be saved in the data base and loaded before the app boot.
-      // to keep things simple, let's use the following sample routes definication
-      var routes = [{"url":"/admin/component1.component",   //the url to laoding the component
-                    "path":"/component1",                    // the route path used on the browser to navigate to the component
-                    "name":"Component1Name",
-                    "component":"Component1"
-                  },
-                  {"url":"/admin/component2.component",
-                                "path":"/component2",
-                                "name":"Component2Name",
-                                "component":"Component2"
-                  }];
-
-      //then call the route service to build the routes for us.
+        var routes = global.routes;
+        //then call the route service to build the routes for us.
        this.dynamicRouteConfigurator.dynamicLoader(routes, this);
     }
 }
@@ -114,8 +97,25 @@ export class Admin{
   </pre>
 </div>
 
+ the routes definition can be saved in the data base and loaded before the app boot.
+ here is a sample routes definition
 
-
+<div>
+  <pre class="highlight">
+    <code class="language-ts" data-lang="ts">
+var routes = [{"url":"/admin/component1.component",   //the url to laoding the component
+              "path":"/component1",                    // the route path used on the browser to navigate to the component
+              "name":"Component1Name",
+              "component":"Component1"
+            },
+            {"url":"/admin/component2.component",
+                          "path":"/component2",
+                          "name":"Component2Name",
+                          "component":"Component2"
+            }];
+</code>
+  </pre>
+</div>
 
 
 

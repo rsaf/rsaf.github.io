@@ -29,8 +29,7 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1, contex
                     core_1.Component({
                         selector: 'header',
                         templateUrl: 'app/layout_components/header/header.html',
-                        directives: [common_1.CORE_DIRECTIVES],
-                        styleUrls: ['app/layout_components/header/resources/css/style.css']
+                        directives: [common_1.CORE_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], Header);
