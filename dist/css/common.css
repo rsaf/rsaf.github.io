@@ -423,13 +423,16 @@ footer{
 
 .highlight {
   margin-top: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   background-color: #002b36;
   color: #93a1a1;
   padding: 1px;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 5px;
+  width: 100%;
+  overflow-x: auto;
+  webkit-overflow-scrolling:auto;
 }
 
 .bluebg{

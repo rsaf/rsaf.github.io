@@ -16,8 +16,11 @@
         <br />
         <br />
 
-        The code used on the post can be found on my
+        The code used on the current post can be found on my
         <a href="https://github.com/rsaf/rsaf.github.io/tree/master/admin/dynamic-navigation" target="_blank">GitHub Page</a>
+
+        <br />
+        <br />
 
         <div>
           <pre class="highlight">
@@ -31,7 +34,6 @@
         </code>
           </pre>
         </div>
-
         But now want to make everything dynamic, and load the components on-demand. The above sample code should then look like:
 
         <div>
@@ -108,15 +110,15 @@ export class Admin{
   <pre class="highlight">
     <code class="language-ts" data-lang="ts">
 var routes = [{"url":"/admin/component1.component",   //the url to laoding the component
-              "path":"/component1",                    // the route path used on the browser to navigate to the component
+              "path":"/component1",     // the route path used on the browser to navigate to the component
               "name":"Component1Name",
               "component":"Component1"
             },
             {"url":"/admin/component2.component",
-                          "path":"/component2",
-                          "name":"Component2Name",
-                          "component":"Component2"
-            }];
+                        "path":"/component2",
+                        "name":"Component2Name",
+                        "component":"Component2"
+          }];
 </code>
   </pre>
 </div>
@@ -134,69 +136,72 @@ as seen on the admin component above.
   <pre class="highlight">
     <code class="language-ts" data-lang="ts">
 
-      import {Injectable, Type,ViewEncapsulation} from 'angular2/core'
-      import {RouteRegistry,AsyncRoute} from 'angular2/router'
-      import {Admin} from '../components/admin';
+import {Injectable, Type,ViewEncapsulation} from 'angular2/core'
+import {RouteRegistry,AsyncRoute} from 'angular2/router'
+import {Admin} from '../components/admin';
 
 
-      @Injectable()
-      export class DynamicRouteConfigurator {
-        constructor(private registry: RouteRegistry) {
+@Injectable()
+export class DynamicRouteConfigurator {
+  constructor(private registry: RouteRegistry) {
 
-        }
+  }
 
-        addRoute(component: Type, route) {
-          let routeConfig = this.getRoutes(component);
-          routeConfig.configs.push(route);
-          this.updateRouteConfig(component, routeConfig);
-          this.registry.config(component, route);
-        }
+  addRoute(component: Type, route) {
+    let routeConfig = this.getRoutes(component);
+    routeConfig.configs.push(route);
+    this.updateRouteConfig(component, routeConfig);
+    this.registry.config(component, route);
+  }
 
-        getRoutes(component: Type) {
-            return Reflect.getMetadata('annotations', component)
-                .filter(a => {
-                  return a.configs!=undefined;
-                }).pop();
-        }
-        updateRouteConfig(component: Type, routeConfig) {
-          let annotations = Reflect.getMetadata('annotations', component);
-          let routeConfigIndex = -1;
-          for (let i = 0; i < annotations.length; i += 1) {   //find the route configs anotation among the other components
-              if (annotations[i].configs!=undefined) {
-                  routeConfigIndex = i;
-                  break;
-                }
+  getRoutes(component: Type) {
+      return Reflect.getMetadata('annotations', component)
+          .filter(a => {
+            return a.configs!=undefined;
+          }).pop();
+  }
+  updateRouteConfig(component: Type, routeConfig) {
+    let annotations = Reflect.getMetadata('annotations', component);
+    let routeConfigIndex = -1;
+    //find the route configs anotation among the other components
+    for (let i = 0; i < annotations.length; i += 1) {
+        if (annotations[i].configs!=undefined) {
+            routeConfigIndex = i;
+            break;
           }
-          if (routeConfigIndex < 0) {
-            throw new Error('No route metadata attached to the component');
-          }
-          annotations[routeConfigIndex] = routeConfig;
-          Reflect.defineMetadata('annotations', annotations, Admin);
-        }
+    }
+    if (routeConfigIndex < 0) {
+      throw new Error('No route metadata attached to the component');
+    }
+    annotations[routeConfigIndex] = routeConfig;
+    Reflect.defineMetadata('annotations', annotations, Admin);
+  }
 
-        dynamicLoader(routes:any[],target){
-          for (let i = 0; i < routes.length; i++) {
-              this.setRoutes(routes[i],target);
-          }
-        }
+  dynamicLoader(routes:any[],target){
+    for (let i = 0; i < routes.length; i++) {
+        this.setRoutes(routes[i],target);
+    }
+  }
 
-         setRoutes(route,target){
-            var _this = this;
-             this.addRoute(target.constructor,
-                         new AsyncRoute({
-                           path: route.path
-                           ,loader:() =>   System.import(route.url).then(function(resp){ target.appRoutes = _this.getAppRoutes(target); return resp[route.component]; })
-                           ,name:route.name
-              }));
-          }
+   setRoutes(route,target){
+      var _this = this;
+       this.addRoute(target.constructor,
+                   new AsyncRoute({
+                     path: route.path
+                     ,loader:() =>   System.import(route.url).then(function(resp){
+                        target.appRoutes = _this.getAppRoutes(target); return resp[route.component];
+                       })
+                     ,name:route.name
+        }));
+    }
 
-          getAppRoutes(target): any[] {
-              return this.getRoutes(target.constructor).configs.map(route => {
-                    return { link: [`/${route.name}`], title: route.name,icon:'mdi-action-dashboard' };
+    getAppRoutes(target): any[] {
+        return this.getRoutes(target.constructor).configs.map(route => {
+              return { link: [`/${route.name}`], title: route.name,icon:'mdi-action-dashboard' };
 
-              });
-          }
-      }
+        });
+    }
+}
 
 
 
@@ -206,7 +211,7 @@ as seen on the admin component above.
 
 
   <div class="">
-  Now you can build a highly dynamic web application
+  Now you can build a highly dynamic web application.
   </div>
 
 
