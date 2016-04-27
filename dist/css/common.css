@@ -373,7 +373,6 @@ html,body{
   margin: 0 !important;
   background: url('https://raw.githubusercontent.com/rsaf/rsaf.github.io/master/images/blueBg2.jpg') no-repeat  center center;
   background-size: cover;
-  position: relative;
 }
 
 .page-header-cover {
@@ -388,7 +387,7 @@ html,body{
   padding:0;
   /*background-image: linear-gradient(to bottom right,#002f4b,#dc4225);*/
   background-image: linear-gradient(to bottom right,#002b36,black);
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 
