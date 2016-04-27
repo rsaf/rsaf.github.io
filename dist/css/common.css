@@ -361,7 +361,7 @@ html,body{
       background-color: rgba(0, 0, 0, 1);
  }
 
- .my-nav-item.router-link-active,{
+ .my-nav-item.router-link-active{
    background-color: rgba(0, 0, 0, 0.81);
  }
 
