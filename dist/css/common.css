@@ -373,6 +373,7 @@ html,body{
   margin: 0 !important;
   background: url('https://raw.githubusercontent.com/rsaf/rsaf.github.io/master/images/blueBg2.jpg') no-repeat  center center;
   background-size: cover;
+  position: relative;
 }
 
 .page-header-cover {
