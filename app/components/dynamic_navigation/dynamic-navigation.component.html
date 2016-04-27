@@ -2,22 +2,23 @@
 <div class="container-fluid main-container">
       <div class="margin-bottom-20">
         Let's continue our journey of making a dynamic left navigation.This can be used for applications where you have a left navigation with different navigation items
-        depending on the logged in user. Imagine you have a single shop admin platform for two clients A and B. And client A has two items on his navigation, say: orders and products,
-        while client B has 4 items on his navigation: Orders, Users, Shops, Shipment. One way to implement such a navigation would be to load all items on the navigation regardless of the current user (A or B),
-        then hide  items  that are not used by the current user. But method is every inefficient and may slow your application boot process. Also, if you have a hundred users, hide and show become very difficult to manage.
-        Therefore, we can consider loading only the modules and resources needed for a spefic user. And that is achievable thanks to angular's  <a href="https://angular.io/docs/js/latest/api/router/AsyncRoute-class.html" target="_blank"> AsyncRoute</a>  and System.import.
-
-        <br />
-        <br />
-        This post is the next and final step from my  previous post on   <a [routerLink] = "['/DynamicRouting']" >Dynamic Routing in angular2</a>,
-        where i presented a way to dynamically configure your routes. But that was based on the assumption that you had already loaded all the modules
-        needed to configure your navigation.So we had something this, where Component1 and Component2 were already loaded.
+        depending on the logged in user. Imagine you have a single e-commerce admin platform for two users A and B. And user A has two items on his navigation, say: orders and products,
+        while user B has 4 items on his navigation: Orders, Users, Shops, Shipments. One way to implement such a navigation would be to load all items on the navigation regardless of the current user (A or B),
+        then hide  items  that are not used by the current user. But method is every inefficient and may slow your application boot process. Also, if you have a hundred users, hide and show become very difficult to maintain.
+        Therefore, we can consider loading only the modules and resources needed for a specific user. Fortunately, that is achievable thanks to angular's  <a href="https://angular.io/docs/js/latest/api/router/AsyncRoute-class.html" target="_blank"> AsyncRoute</a>  and System.import.
 
         <br />
         <br />
 
         The code used on the current post can be found on my
         <a href="https://github.com/rsaf/rsaf.github.io/tree/master/admin/dynamic-navigation" target="_blank">GitHub Page</a>
+        <br />
+        <br />
+        This post is the next and final step from my  previous post on   <a [routerLink] = "['/DynamicRouting']" >Dynamic Routing in angular2</a>,
+        where i presented a way to dynamically configure your routes. But that was based on the assumption that you had already loaded all the modules
+        needed to configure your navigation. So we had something like this, where Component1 and Component2 were loaded components.
+
+
 
         <br />
         <br />
@@ -49,7 +50,8 @@
           </pre>
         </div>
 
-        Notice that the components are just strings, that would be loaded later.
+        Notice that the components are just saved as strings(component names) and will be loaded later,
+        rather the actual component objects as we did previously.
 
         <br />
       </div>
@@ -59,6 +61,8 @@
   The Admin  component
 </h4>
 
+This is our main component but there is not much going on here. All we do is import our dependencies , add the Standard annotations of
+an angular2 component and call the dynamicLoader from our router service to generate the routes.
 
 <div>
   <pre class="highlight">
@@ -79,8 +83,6 @@ import {DynamicRouteConfigurator} from '../services/router';
     DynamicRouteConfigurator
   ]
 })
-
-
 
 @RouteConfig([])
 
@@ -103,9 +105,9 @@ export class Admin{
   </pre>
 </div>
 
- the @RouteConfig annotination is given an empty array.
- the routes definition can be saved in the data base and loaded before the app boot.
- here is a sample routes definition.
+ The @RouteConfig annotination is given an empty array, because we want to define it programmatically.
+ The routes definition can be saved in the data base and loaded before the app boot.
+ Here is a sample routes definition.
 
 <div>
   <pre class="highlight">
@@ -130,8 +132,8 @@ var routes = [{"url":"/admin/component1.component",   //the url to laoding the c
   The dynamic route service
 </h4>
 
-the dynamic router service is straight forward.
-it has a few method but the most important one is the dynamicLoader which can be called by a specific component to loading its routes,
+the dynamic router service code is straight forward.
+It has a few methods but the most important one is the dynamicLoader which can be called by a specific component to load its routes,
 as seen on the admin component above.
 <div>
   <pre class="highlight">
@@ -139,7 +141,6 @@ as seen on the admin component above.
 
 import {Injectable, Type,ViewEncapsulation} from 'angular2/core'
 import {RouteRegistry,AsyncRoute} from 'angular2/router'
-import {Admin} from '../components/admin';
 
 
 @Injectable()
@@ -154,17 +155,18 @@ export class DynamicRouteConfigurator {
     this.updateRouteConfig(component, routeConfig);
     this.registry.config(component, route);
   }
-
+  //find the route config anotation among other annotations
   getRoutes(component: Type) {
       return Reflect.getMetadata('annotations', component)
           .filter(a => {
             return a.configs!=undefined;
           }).pop();
   }
+
+  //find the route configs anotation among  other annotations, and redefine it.
   updateRouteConfig(component: Type, routeConfig) {
     let annotations = Reflect.getMetadata('annotations', component);
     let routeConfigIndex = -1;
-    //find the route configs anotation among the other components
     for (let i = 0; i < annotations.length; i += 1) {
         if (annotations[i].configs!=undefined) {
             routeConfigIndex = i;
@@ -175,7 +177,7 @@ export class DynamicRouteConfigurator {
       throw new Error('No route metadata attached to the component');
     }
     annotations[routeConfigIndex] = routeConfig;
-    Reflect.defineMetadata('annotations', annotations, Admin);
+    Reflect.defineMetadata('annotations', annotations, component);
   }
 
   dynamicLoader(routes:any[],target){
@@ -184,6 +186,11 @@ export class DynamicRouteConfigurator {
     }
   }
 
+  /*
+  configure the routes for a target component.
+  the loader is function that will be called when the route is being activated.
+  And it will load the corresponding module using System.import
+  */
    setRoutes(route,target){
       var _this = this;
        this.addRoute(target.constructor,
@@ -196,10 +203,10 @@ export class DynamicRouteConfigurator {
         }));
     }
 
+    // build the final routes that are used in the navigation.html as routerLink attribute.
     getAppRoutes(target): any[] {
         return this.getRoutes(target.constructor).configs.map(route => {
-              return { link: [`/${route.name}`], title: route.name,icon:'mdi-action-dashboard' };
-
+              return {link: [`/${route.name}`], title: route.name};
         });
     }
 }
@@ -211,6 +218,53 @@ export class DynamicRouteConfigurator {
 </div>
 
 
+<h4>
+  Setting up left navigation component
+</h4>
+
+
+The dynamically built navigation(array) is passed to the left navigation component the same way we did previously,
+that's as an input to the Navigator component.
+
+<div>
+  <pre class="highlight">
+    <code class="language-ts" data-lang="ts">
+  import {Component, View,Input} from 'angular2/core';
+  import {RouterLink,ROUTER_DIRECTIVES} from 'angular2/router';
+
+  @Component({
+      selector: 'demo-navigator',
+  })
+
+
+  @View({
+    templateUrl: 'layout/navigator/navigator.html',
+    directives: [RouterLink,ROUTER_DIRECTIVES]
+  })
+  export class DemoNavigator {
+  @Input() navigations: any[];
+      constructor() {}
+  }
+</code>
+
+  </pre>
+</div>
+
+The routes in this example are passed to the navigation as an input attribute
+  <div>
+    <pre class="highlight">
+      <code class="language-ts" data-lang="ts">
+  	&lt demo-navigator  [navigations]="appRoutes" &gt &lt/demo-navigator &gt
+      </code>
+    </pre>
+  </div>
+
+  In the navigator.html we can then loop through the navigations array and display each item using
+  *ngFor
+
+
+<br>
+<br>
   <div class="">
   Now you can build a highly dynamic web application.
   </div>
